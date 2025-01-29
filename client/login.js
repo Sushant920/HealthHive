@@ -1,50 +1,43 @@
-// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
-// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCqYkHR77AelL733hJfGOw9MBVRHJnmkR0",
     authDomain: "healthhivee.firebaseapp.com",
     projectId: "healthhivee",
-    storageBucket: "healthhivee.appspot.com", // FIXED storage bucket
+    storageBucket: "healthhivee.appspot.com",
     messagingSenderId: "515910469037",
     appId: "1:515910469037:web:725e82356253f518d6cd24",
     measurementId: "G-XLG0LLZZ3J"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);  // FIXED: Pass `app` when initializing auth
+const auth = getAuth(app);
 
-// Wait for DOM to load before adding event listener
-document.addEventListener("DOMContentLoaded", function () {
-    const submit = document.getElementById('submit');
-    
-    if (submit) {  // Ensure the button exists
-        submit.addEventListener("click", function (event) {
-            event.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector('.auth-form');
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-            if (!email || !password) {
-                alert("Please enter both email and password.");
-                return;
-            }
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    alert("Account created successfully!");
-                    console.log("User:", user);
-                })
-                .catch((error) => {
-                    alert(error.message);
-                    console.error("Error:", error.code, error.message);
-                });
-        });
-    } else {
-        console.error("Submit button not found!");
-    }
+        if (!email || !password) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                alert("Login successful!");
+                console.log("User:", userCredential.user);
+                // Redirect to dashboard or main page if needed
+                window.location.href = "QR-Code-Scanner-main/index.html";
+            })
+            .catch((error) => {
+                alert("Error: " + error.message);
+                console.error(error);
+            });
+    });
 });

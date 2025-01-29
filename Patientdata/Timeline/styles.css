@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    margin-top: 20px;
+}
+
+.container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-visit-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Form Container */
+.form-container {
+    display: none;
+    width: 300px;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.form-container input, 
+.form-container textarea {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.form-container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Timeline Container */
+.timeline-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.timeline {
+    position: relative;
+    width: 50%;
+    min-height: 400px; /* Ensure timeline starts from below */
+    display: flex;
+    flex-direction: column-reverse; /* Makes timeline start from bottom */
+    align-items: center;
+    padding: 20px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background: #007BFF;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2.5px;
+}
+
+/* Timeline Events */
+.visit {
+    position: relative;
+    width: 45%;
+    padding: 15px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+.left {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.right {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.visit h3 {
+    margin: 5px 0;
+}
+
+.visit p {
+    margin: 5px 0;
+    color: #555;
+}

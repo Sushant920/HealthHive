@@ -17,43 +17,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Wait for the DOM to load
-document.addEventListener("DOMContentLoaded", function () {
-    // Get form elements
-    const signUpForm = document.querySelector('.auth-form');
-    const nameInput = document.querySelector('input[name="name"]');
-    const emailInput = document.querySelector('input[name="email"]');
-    const passwordInput = document.querySelector('input[name="password"]');
+document.addEventListener("DOMContentLoaded", () => {
+    const signupForm = document.getElementById("signup-form");
 
-    // Form submit event listener
-    signUpForm.addEventListener("submit", function (event) {
+    signupForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const name = nameInput.value;
-        const email = emailInput.value;
-        const password = passwordInput.value;
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
         if (!name || !email || !password) {
             alert("All fields are required!");
             return;
         }
 
-        // Create user with Firebase Auth
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
                 alert("Account created successfully!");
-
-                // You can optionally store additional user details here (e.g., name) in Firestore or Realtime Database.
-                console.log("User:", user);
-
-                // Optionally, redirect to the login page
-                window.location.href = "login.html";
+                console.log("User:", userCredential.user);
+                window.location.href = "login.html"; // Redirect after signup
             })
             .catch((error) => {
-                const errorMessage = error.message;
-                alert("Error: " + errorMessage);
-                console.error("Error:", error);
+                alert("Error: " + error.message);
+                console.error(error);
             });
     });
 });

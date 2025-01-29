@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Profile</title>
+  <link rel="stylesheet" href="healthprofile.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #002342;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loogoo {
+      background-color: #67abe6;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 150px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 40px;
+      border-top-right-radius: 80px;
+      border-bottom-right-radius: 80px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    .navbar {
+      background-color: #67abe6;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-top-right-radius: 80px;
+      border-bottom-right-radius: 80px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      z-index: 0;
+      padding-top: 100px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      font-size: 24px;
+      transition: border-bottom 0.3s ease;
+    }
+
+    .nav-link:hover {
+      border-bottom: 2px solid white;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 107%;
+      margin: 0 auto;
+      background-color: #002342;
+    }
+
+    .profile, .description {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile {
+      background: linear-gradient(to bottom, #67abe6, #bdddf9);
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .profile-list {
+      list-style-type: none;
+      margin-top: 10px;
+      padding: 0;
+    }
+
+    .profile-list li {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .editable-field {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .edit-button, .hover-button {
+      background-color: #67abe6;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .edit-button:hover, .hover-button:hover {
+      background-color: #5a99c8;
+    }
+
+    .done-button {
+      background-color: #5a99c8;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .done-button:hover {
+      background-color: #3f7fa4;
+    }
+
+    .button-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .description {
+      background-color: #e3e2e2;
+      color: #333;
+      border-radius: 10px;
+    }
+
+    #description {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    /* Footer */
+    footer {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      width: 100%;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar-overall">
+    <div class="loogoo"><img src="Group 1.svg" alt="Profile Picture" class="profile-image"></div>
+    
+    <div class="navbar">
+      <a href="Gallery-for-Scans-main/index.html" class="nav-link">Scans </a>
+      <a href="galleryview-main/index.html" class="nav-link">Reports</a>
+      <a href="Timeline/index.html" class="nav-link"> Records</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <!-- Profile section with editable fields -->
+    <div class="profile">
+      <img src="img.jpeg" alt="Profile Picture" class="profile-image">
+      <h2>Sushant Chavan</h2>
+      <ul class="profile-list">
+        <li>
+          Height: 
+          <span class="editable-field" id="height" contenteditable="false">170 cm</span>
+        </li>
+        <li>
+          Weight: 
+          <span class="editable-field" id="weight" contenteditable="false">60 kg</span>
+        </li>
+        <li>
+          Blood Group: 
+          <span class="editable-field" id="bloodGroup" contenteditable="false">A+</span>
+        </li>
+        <li>
+          Age: 
+          <span class="editable-field" id="age" contenteditable="false">24</span>
+        </li>
+      </ul>
+      <button class="edit-button" id="editProfileButton" onclick="toggleEditProfile()">Edit Profile</button>
+      <button class="done-button" id="doneButton" onclick="toggleEditProfile()" style="display: none;">Done</button>
+    </div>
+
+    <!-- Description section with editable field -->
+    <div class="description">
+      <h3>Patient's Detailed Description</h3>
+      <p id="description" contenteditable="false">
+        Detailed information of medical history, current condition, and any important notes related to the patient will go here.
+      </p>
+      <button class="edit-button" id="editDescriptionButton" onclick="toggleEditDescription()">Edit Description</button>
+      <button class="done-button" id="doneDescriptionButton" onclick="toggleEditDescription()" style="display: none;">Done</button>
+      <div class="button-container">
+        <a href="index.html"><button class="hover-button">Go to Main Content</button></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HealthHive. All rights reserved.</p>
+    </div>
+  </footer>
+
+  
+    <script>
+  // Function to load saved values from localStorage
+  window.onload = function() {
+    const savedHeight = localStorage.getItem('height');
+    const savedWeight = localStorage.getItem('weight');
+    const savedBloodGroup = localStorage.getItem('bloodGroup');
+    const savedAge = localStorage.getItem('age');
+    const savedDescription = localStorage.getItem('description');
+
+    if (savedHeight) document.getElementById('height').textContent = savedHeight;
+    if (savedWeight) document.getElementById('weight').textContent = savedWeight;
+    if (savedBloodGroup) document.getElementById('bloodGroup').textContent = savedBloodGroup;
+    if (savedAge) document.getElementById('age').textContent = savedAge;
+    if (savedDescription) document.getElementById('description').textContent = savedDescription;
+  }
+
+  // Function to toggle editing of profile fields
+  function toggleEditProfile() {
+    const editableFields = document.querySelectorAll('.editable-field');
+    const editButton = document.getElementById('editProfileButton');
+    const doneButton = document.getElementById('doneButton');
+
+    let isEditable = false;
+
+    editableFields.forEach(field => {
+      if (field.contentEditable === "false") {
+        field.contentEditable = "true"; // Make the fields editable
+        isEditable = true;
+      } else {
+        field.contentEditable = "false"; // Lock the fields again
+        // Save changes to localStorage when done editing
+        localStorage.setItem(field.id, field.textContent);
+      }
+    });
+
+    if (isEditable) {
+      editButton.style.display = 'none';
+      doneButton.style.display = 'inline-block';
+    } else {
+      editButton.style.display = 'inline-block';
+      doneButton.style.display = 'none';
+    }
+  }
+
+  // Function to toggle editing of the description
+  function toggleEditDescription() {
+    const descriptionField = document.getElementById('description');
+    const editButton = document.getElementById('editDescriptionButton');
+    const doneButton = document.getElementById('doneDescriptionButton');
+
+    if (descriptionField.contentEditable === "false") {
+      descriptionField.contentEditable = "true"; // Make the description editable
+      editButton.style.display = 'none';
+      doneButton.style.display = 'inline-block';
+    } else {
+      descriptionField.contentEditable = "false"; // Lock the description
+      // Save description to localStorage when done editing
+      localStorage.setItem('description', descriptionField.textContent);
+      editButton.style.display = 'inline-block';
+      doneButton.style.display = 'none';
+    }
+  }
+
+  </script>
+
+</body>
+</html>

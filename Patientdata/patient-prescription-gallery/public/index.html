@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Prescription Record</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .prescription-gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px 0;
+            white-space: nowrap;
+        }
+        .prescription-item {
+            display: inline-block;
+            position: relative;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 150px;
+        }
+        .prescription-item img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .prescription-item img:hover {
+            transform: scale(1.1);
+        }
+        .prescription-details {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #333;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Patient Prescription Record</h1>
+        <button id="uploadButton">Upload Prescription</button>
+        
+        <!-- Upload Modal -->
+        <div id="uploadModal" class="modal">
+            <div class="modal-content">
+                <h2>Upload Prescription</h2>
+                <label for="doctor">Doctor's Name:</label>
+                <input type="text" id="doctor" placeholder="Dr. John Doe" required>
+                
+                <label for="date">Date of Prescription:</label>
+                <input type="date" id="date" required>
+                
+                <label for="description">Notes:</label>
+                <textarea id="description" placeholder="Additional details..." required></textarea>
+                
+                <label for="fileInput">Attach Prescription:</label>
+                <input type="file" id="fileInput" accept="image/*" required>
+                
+                <button id="submitPrescription">Submit</button>
+                <button id="closeModal">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Prescription Records Section -->
+        <div id="prescriptionGallery" class="prescription-gallery">
+            <!-- Prescriptions will be displayed here -->
+        </div>
+
+        <!-- Full Screen Image Modal -->
+        <div id="fullScreenModal" class="modal">
+            <img id="fullScreenImage" src="" alt="Prescription Preview">
+        </div>
+    </div>
+    
+    <script>
+        const uploadButton = document.getElementById("uploadButton");
+        const uploadModal = document.getElementById("uploadModal");
+        const closeModal = document.getElementById("closeModal");
+        const submitPrescription = document.getElementById("submitPrescription");
+        const fileInput = document.getElementById("fileInput");
+        const prescriptionGallery = document.getElementById("prescriptionGallery");
+        const fullScreenModal = document.getElementById("fullScreenModal");
+        const fullScreenImage = document.getElementById("fullScreenImage");
+        const doctorInput = document.getElementById("doctor");
+        const dateInput = document.getElementById("date");
+        const descriptionInput = document.getElementById("description");
+
+        uploadButton.addEventListener("click", () => {
+            uploadModal.style.display = "flex";
+        });
+
+        closeModal.addEventListener("click", () => {
+            uploadModal.style.display = "none";
+        });
+
+        submitPrescription.addEventListener("click", () => {
+            const file = fileInput.files[0];
+            const doctor = doctorInput.value;
+            const date = dateInput.value;
+            const description = descriptionInput.value;
+            
+            if (file && doctor && date && description) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const prescriptionItem = document.createElement("div");
+                    prescriptionItem.classList.add("prescription-item");
+                    
+                    const img = document.createElement("img");
+                    img.src = event.target.result;
+                    prescriptionItem.appendChild(img);
+                    
+                    const details = document.createElement("div");
+                    details.classList.add("prescription-details");
+                    details.innerHTML = `<strong>${doctor}</strong><br>${date}<br>${description}`;
+                    prescriptionItem.appendChild(details);
+                    
+                    img.addEventListener("click", () => {
+                        fullScreenModal.style.display = "flex";
+                        fullScreenImage.src = event.target.result;
+                    });
+
+                    fullScreenModal.addEventListener("click", () => {
+                        fullScreenModal.style.display = "none";
+                    });
+                    
+                    prescriptionGallery.appendChild(prescriptionItem);
+                    uploadModal.style.display = "none";
+                    fileInput.value = "";
+                    doctorInput.value = "";
+                    dateInput.value = "";
+                    descriptionInput.value = "";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please fill in all the fields!");
+            }
+        });
+    </script>
+</body>
+</html>
