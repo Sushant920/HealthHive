@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Profile</title>
+  <link rel="stylesheet" href="healthprofile.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="#" class="nav-link">Scans </a>
+    <a href="#" class="nav-link">Reports</a>
+    <a href="#" class="nav-link"> Records</a>
+  </div>
+
+  <div class="main-content">
+    <div class="profile">
+      <img src="img.jpeg" alt="Profile Picture" class="profile-image">
+      <h2>Sushant Chavan</h2>
+      <ul class="profile-list">
+        <li>
+          Height: 
+          <span class="editable-field" id="height">170 cm</span>
+        </li>
+        <li>
+          Weight: 
+          <span class="editable-field" id="weight">60 kg</span>
+        </li>
+        <li>
+          Blood Group: 
+          <span class="editable-field" id="bloodGroup">A+</span>
+        </li>
+        <li>
+          Age: 
+          <span class="editable-field" id="age">24</span>
+        </li>
+      </ul>
+      <button class="edit-button">Edit Profile</button>
+    </div>
+
+    <div class="description">
+      <h3>Patient's Detailed Description</h3>
+      <p id="description">
+        Detailed information of medical history, current condition, and any important notes related to the patient will go here.
+      </p>
+      <button class="edit-button">Edit Description</button>
+      <div class="button-container">
+        <button class="hover-button">Go to Main Content</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HealthHive. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
