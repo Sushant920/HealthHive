@@ -5,20 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doctor Template</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-        <h1>Welcome to HealthHive</h1>
-        <p>Your one-stop healthcare solution</p>
-        <a href="#services" class="cta-link">
-            <button class="cta-button">Get Started</button>
-        </a>
+  
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-text">
+      <img src="Group 1.svg" alt="Profile Picture" class="profile-image">
+      <h1>Welcome to HealthHive</h1>
+      <p><span id="typing"></span><span id="cursor">Your one stop solution to Healthcare|</span></p> 
+      <a href="#services" class="cta-link">
+        <button class="cta-button">Get Started</button>
+      </a>
     </div>
+  </div>
 </section>
+
 
 
   <!-- Services Section -->
@@ -36,7 +43,7 @@
         <div class="card">
           <h3>Diagnostics</h3>
           <p>Advanced tools for accurate results.</p>
-          <a href="Disease-Prediction-main/app.py" class="cta-link">
+          <a href="diagnostics.html" class="cta-link">
             <button class="cta-button">Learn More</button>
           </a>
         </div>
@@ -90,30 +97,6 @@
       <p>&copy; 2025 HealthHive. All rights reserved.</p>
     </div>
   </footer>
-
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyCqYkHR77AelL733hJfGOw9MBVRHJnmkR0",
-      authDomain: "healthhivee.firebaseapp.com",
-      projectId: "healthhivee",
-      storageBucket: "healthhivee.firebasestorage.app",
-      messagingSenderId: "515910469037",
-      appId: "1:515910469037:web:725e82356253f518d6cd24",
-      measurementId: "G-XLG0LLZZ3J"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
 
   <script src="script.js"></script>
 </body>
